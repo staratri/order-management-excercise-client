@@ -1,16 +1,3 @@
-<template>
-    <div class="order_container" >
-        <!-- Title -->
-        <div class="title">
-        Orders
-        </div>
-        <!-- Products -->
-        <div class="orders">
-            <order-item v-for="order in getOrders" v-bind:key = "order._id" :order="order"/> 
-        </div>
-    </div>
-</template>
-
 <script>
 import OrderItem from './OrderItem.vue'
     export default {
@@ -29,12 +16,27 @@ import OrderItem from './OrderItem.vue'
             }
         },
         mounted(){
-            this.$http.get('http://localhost:3000/orders').then(response=>{
+            this.$http.get('http://18.217.149.238:3000/orders').then(response=>{
                 this.$store.dispatch('mutateOrders',response.body.response)
             })
         }
     }
 </script>
+
+<template>
+    <div class="order_container" >
+        <!-- Title -->
+        <div class="title">
+        Orders
+        </div>
+        <!-- Products -->
+        <div class="orders">
+            <order-item v-for="order in getOrders" v-bind:key = "order._id" :order="order"/> 
+        </div>
+    </div>
+</template>
+
+
 
 <style lang="scss" scoped>
 .order_container {

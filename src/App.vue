@@ -33,7 +33,7 @@ import ProductsContainer from "./components/ProductsContainer.vue";
     beforeMount() {
       if(localStorage._token){
         this.isUser = true
-        this.$http.get('http://localhost:3000/user').then(response=>{
+        this.$http.get('http://18.217.149.238:3000/user').then(response=>{
           this.$store.dispatch('mutateUser',response.body)
         })
       }else{

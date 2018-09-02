@@ -1,3 +1,35 @@
+<script>
+    export default {
+        data(){
+            return{
+                email : '',
+                password : ''
+            }
+        },
+        methods:{
+            createLoginRequest(){
+                let req = {
+                    email : this.email,
+                    password : this.password
+                }
+                this.$http.post('http://18.217.149.238:3000/login',req).then(res=>{
+                    if(res.status === 200){
+                        localStorage._token = res.body.token
+                        localStorage.user = res.body.details._id
+                        location.reload()
+                    }
+                })
+            }
+        },
+        beforeMount(){
+            if(localStorage._token){
+                this.$router.push('/')
+            }
+        }
+    }
+</script>
+
+
 <template>
     <div class="container">
     <form action="index.html" method="post">
@@ -17,36 +49,6 @@
     </div>
 </template>
 
-<script>
-    export default {
-        data(){
-            return{
-                email : '',
-                password : ''
-            }
-        },
-        methods:{
-            createLoginRequest(){
-                let req = {
-                    email : this.email,
-                    password : this.password
-                }
-                this.$http.post('http://localhost:3000/login',req).then(res=>{
-                    if(res.status === 200){
-                        localStorage._token = res.body.token
-                        localStorage.user = res.body.details._id
-                        location.reload()
-                    }
-                })
-            }
-        },
-        beforeMount(){
-            if(localStorage._token){
-                this.$router.push('/')
-            }
-        }
-    }
-</script>
 
 <style lang="scss" scoped>
 

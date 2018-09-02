@@ -38,7 +38,7 @@ export const store = new Vuex.Store({
     },
     actions :{
         getAvailableProducts({commit}){
-            Vue.http.get('http://localhost:3000/products').then(response=>{
+            Vue.http.get('http://18.217.149.238:3000/products').then(response=>{
                 commit('updateProducts', response.body.response)
             }).catch(err=>{
                 console.log(err)
@@ -62,7 +62,7 @@ export const store = new Vuex.Store({
                 amount : this.state.orderAmount,
                 products : this.state.cart
             }
-            Vue.http.post('http://localhost:3000/orders/create', order).then((response=>{
+            Vue.http.post('http://18.217.149.238:3000/orders/create', order).then((response=>{
                 commit('emptyCart')
             })).catch(err=>{
                 console.log(err)
