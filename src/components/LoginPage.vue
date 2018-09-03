@@ -18,7 +18,7 @@
                         localStorage.user = res.body.details._id
                         location.reload()
                     }else{
-
+                        alert('Handling error, Wrong credential.')
                     }
                 })
             }
