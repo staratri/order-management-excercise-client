@@ -17,7 +17,12 @@ import CartItems from "./CartItem.vue"
                 this.$store.dispatch('createNewOrder')
                 this.$router.push('/orders')
             }
+        },
+        beforeMount() {
+            if(localStorage._token === ""){
+            this.$router.push('/login')
         }
+  }
     }
 </script>
 

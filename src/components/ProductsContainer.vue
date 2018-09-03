@@ -17,8 +17,13 @@ export default {
       return this.$store.state.products
     }
   },
-  created(){
+  mounted(){
     this.$store.dispatch('getAvailableProducts')
+  },
+  beforeMount() {
+    if(localStorage._token === ""){
+      this.$router.push('/login')
+    }
   }
 }
 </script>

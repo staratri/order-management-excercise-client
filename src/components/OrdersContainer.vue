@@ -19,7 +19,12 @@ import OrderItem from './OrderItem.vue'
             this.$http.get('http://18.217.149.238:3000/orders').then(response=>{
                 this.$store.dispatch('mutateOrders',response.body.response)
             })
+        },
+        beforeMount() {
+            if(localStorage._token === ""){
+            this.$router.push('/login')
         }
+  }
     }
 </script>
 

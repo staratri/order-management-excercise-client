@@ -1,46 +1,50 @@
 <script>
 import ProductsContainer from "./components/ProductsContainer.vue";
-  export default {
-    components : {
-      'products-container' : ProductsContainer
+export default {
+  components: {
+    "products-container": ProductsContainer
+  },
+  data: () => ({
+    drawer: null,
+    isUser: false
+  }),
+  props: {
+    source: String
+  },
+  methods: {
+    pushToProductsPage() {
+      this.$router.push("/products");
     },
-    data: () => ({
-      drawer: null,
-      isUser : false
-    }),
-    props: {
-      source: String
+    pushToOrdersPage() {
+      this.$router.push("/orders");
     },
-    methods : {
-      pushToProductsPage(){
-        this.$router.push('/products')
-      },
-      pushToOrdersPage(){
-        this.$router.push('/orders')
-      },
-      pushToCartPage(){
-        this.$router.push('/cart')
-      },logOut(){
-        localStorage._token = ""
-        location.reload()
-      }
+    pushToCartPage() {
+      this.$router.push("/cart");
     },
-    computed : {
-      cart_counter(){
-        return this.$store.state.cart.length
-      }
+    logOut() {
+      localStorage._token = "";
+      location.reload();
     },
-    beforeMount() {
-      if(localStorage._token){
-        this.isUser = true
-        this.$http.get('http://18.217.149.238:3000/user').then(response=>{
-          this.$store.dispatch('mutateUser',response.body)
-        })
-      }else{
-        this.$router.push('/login')
-      }
-    },
+    logIn() {
+      this.$router.push("/login");
+    }
+  },
+  computed: {
+    cart_counter() {
+      return this.$store.state.cart.length;
+    }
+  },
+  beforeMount() {
+    if (localStorage._token) {
+      this.isUser = true;
+      this.$http.get("http://18.217.149.238:3000/user").then(response => {
+        this.$store.dispatch("mutateUser", response.body);
+      });
+    } else {
+      this.$router.push("/login");
+    }
   }
+};
 </script>
 
 
@@ -66,6 +70,14 @@ import ProductsContainer from "./components/ProductsContainer.vue";
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>My Orders</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile @click="pushToCartPage()">
+          <v-list-tile-action>
+            <v-icon>contact_mail</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Cart {{this.$store.state.cart.length}}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -101,9 +113,8 @@ import ProductsContainer from "./components/ProductsContainer.vue";
 </template>
 
 <style lang="scss" scoped>
-
-  .cart_counter{
-    position: relative;
-    bottom: 5px;
-  }
+.cart_counter {
+  position: relative;
+  bottom: 5px;
+}
 </style>
