@@ -12,9 +12,6 @@ export const store = new Vuex.Store({
         user: {},
         orders: []
     },
-    getters: {
-
-    },
     mutations: {
         updateProducts(state, payload) {
             state.products = payload
@@ -68,5 +65,4 @@ export const store = new Vuex.Store({
             commit('updateOrders', payload)
         }
     }
-
 })

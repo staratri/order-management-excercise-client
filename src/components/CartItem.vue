@@ -8,10 +8,10 @@
       },
       computed:{
         rateOfInterest(){
-          return this.$store.state.interest / 100 * this.item.price * this.itemQuantity
+          return this.$store.state.interest / 100 * (this.item.price * this.itemQuantity)
         },
         totalAmountOfItem(){
-          return this.rateOfInterest + this.item.price * this.itemQuantity
+          return this.rateOfInterest + (this.item.price * this.itemQuantity)
         }
       },
       mounted(){

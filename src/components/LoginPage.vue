@@ -17,6 +17,8 @@
                         localStorage._token = res.body.token
                         localStorage.user = res.body.details._id
                         location.reload()
+                    }else{
+
                     }
                 })
             }
@@ -46,6 +48,16 @@
         
         </div>
     </form>
+    <v-tooltip bottom>
+      <v-btn
+        slot="activator"
+        color="primary"
+        dark
+      >
+        Button
+      </v-btn>
+      <span>Tooltip</span>
+    </v-tooltip>
     </div>
 </template>
 
