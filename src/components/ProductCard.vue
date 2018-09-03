@@ -3,7 +3,6 @@
         props : ['product'],
         methods : {
             addItemToCard(e){
-                console.log(e.target.attributes.productId.value)
                 this.$store.dispatch('pushProductToCart', e.target.attributes.productId.value)
             }
         }

@@ -11,7 +11,6 @@ import OrderItem from './OrderItem.vue'
         },
         computed:{
             getOrders(){
-                console.log(this.$store.state.orders)
                 return this.$store.state.orders
             }
         },
